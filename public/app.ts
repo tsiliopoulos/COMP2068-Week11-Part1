@@ -2,24 +2,21 @@
 
 (function(){
 	
-var mainApplicationName = "app";
-var app = angular.module(mainApplicationName, ['ngRoute', 'ngResource']);
-
-// wait until the web page is loaded...
-angular.element(document).ready(function() {
-	//manually boostrapping angularJS
-	angular.bootstrap(document, [mainApplicationName]);
-});
-	
-	
-// Todos Service
-app.factory('Todos', ['$resource', function($resource){
-	return $resource('/todos/:id', null, {
-		'update': {method: 'PUT'}
-	});
-}]);
-
- // Controllers ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+var mainApplicationModuleName = "app";
+    var app = angular.module(mainApplicationModuleName, ['ngRoute', 'ngResource']);
+    // wait for web page to load then manually bootstrap angular
+    angular.element(document).ready(function () {
+        angular.bootstrap(document, [mainApplicationModuleName]);
+    });
+    
+    // Todos Service +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    app.factory('Todos', ['$resource', function($resource) {
+        return $resource('/todos/:id', null, {
+            'update': { method: 'PUT' }
+        });
+    }]);
+    
+    // Controllers ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     app.controller('TodoController', ['$scope', 'Todos', function($scope, Todos) {
         $scope.editing = [];
         $scope.username = '';
@@ -116,17 +113,17 @@ app.factory('Todos', ['$resource', function($resource){
             }
         }]);
 
-// Todo Routes
-app.config(['$routeProvider', function($routeProvider){
-	$routeProvider
-	.when('/', {
-		templateUrl: '/todos.html',
-		controller: 'TodoController'
-	})
-	.when('/:id', {
-		templateUrl: '/todoDetails.html',
-		controller: 'TodoDetailCtrl'
-	});
-}]);
+    // Routes ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    app.config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: '/todos.html',
+                controller: 'TodoController'
+            })
+            .when('/:id', {
+                templateUrl: '/todoDetails.html',
+                controller: 'TodoDetailCtrl'
+            });
+    }]);
 	
 })();

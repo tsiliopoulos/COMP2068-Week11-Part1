@@ -26,7 +26,6 @@ var todos = require('./server/routes/todos');
 var app = express();
 
 // passport configuration
-//require('./config/passport');
 require('./server/config/passport')(passport);
 
 // view engine setup
@@ -52,7 +51,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// routes for my application
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/todos', todos);
