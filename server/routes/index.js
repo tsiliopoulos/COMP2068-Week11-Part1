@@ -68,7 +68,8 @@ router.get('/logout', function (req, res){
 router.get('/todoList', function (req, res, next) {
     res.render('todoList', {
         title: 'Todo List',
-        displayName: req.user ? req.user.displayName : ''
+        displayName: req.user ? req.user.displayName : '',
+        username: req.user ? req.user.username : '' 
     });
 });
 

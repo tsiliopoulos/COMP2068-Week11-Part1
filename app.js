@@ -21,6 +21,7 @@ mongoose.connection.on('error', function () {
 // Routes Setup
 var routes = require('./server/routes/index');
 var users = require('./server/routes/users');
+var todos = require('./server/routes/todos');
 
 var app = express();
 
@@ -51,8 +52,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// routes for my application
 app.use('/', routes);
 app.use('/users', users);
+app.use('/todos', todos);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
