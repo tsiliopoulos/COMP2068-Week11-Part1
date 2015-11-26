@@ -64,4 +64,12 @@ router.get('/logout', function (req, res){
   res.redirect('/');
 });
 
+/* Render todoList page. */
+router.get('/todoList', function (req, res, next) {
+    res.render('todoList', {
+        title: 'Todo List',
+        displayName: req.user ? req.user.displayName : ''
+    });
+});
+
 module.exports = router;
